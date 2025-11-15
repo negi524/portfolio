@@ -1,13 +1,14 @@
 import eslintPluginAstro from 'eslint-plugin-astro';
 import tsParser from '@typescript-eslint/parser';
 import prettierConfig from 'eslint-config-prettier';
+import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 export default [
   // Astro recommended configuration (includes base parser for .astro files)
   ...eslintPluginAstro.configs.recommended,
 
   // JSX a11y recommended configuration for accessibility
-  ...eslintPluginAstro.configs['jsx-a11y-recommended'],
+  jsxA11y.flatConfigs.recommended,
 
   // Configure TypeScript parser for script sections within .astro files
   {
