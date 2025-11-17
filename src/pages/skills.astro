@@ -1,7 +1,289 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+interface SkillCategory {
+  icon: string;
+  title: string;
+  color: string;
+  skills: string[];
+}
+
+const capabilities: string[] = [
+  'WebAPIの設計、開発',
+  'バッチの設計、開発',
+  'Webサービスの開発',
+  'データベースの設計',
+  'エンジニアチームのマネジメント',
+  '検索システムの設計、開発',
+  'LLMを活用したワークフローの構築',
+];
+
+const categories: SkillCategory[] = [
+  {
+    icon: '💻',
+    title: 'フロントエンド',
+    color: '#3b82f6',
+    skills: [
+      'HTML',
+      'CSS, SCSS',
+      'TypeScript, JavaScript',
+      'React, ReactRouter',
+      'Vue, Nuxt.js',
+      'Astro',
+    ],
+  },
+  {
+    icon: '⚙️',
+    title: 'バックエンド',
+    color: '#10b981',
+    skills: [
+      'Java, SpringBoot',
+      'TypeScript, NestJS',
+      'Python, FastAPI',
+      'Ruby on Rails',
+      'Solr',
+    ],
+  },
+  {
+    icon: '🎨',
+    title: '設計・アーキテクチャ',
+    color: '#8b5cf6',
+    skills: ['ドメイン駆動設計', 'クリーンアーキテクチャ', 'API設計'],
+  },
+  {
+    icon: '🤖',
+    title: 'LLM・AI',
+    color: '#f59e0b',
+    skills: ['Claude Code', 'MCP', 'Dify'],
+  },
+  {
+    icon: '🚀',
+    title: 'インフラ・DevOps',
+    color: '#ef4444',
+    skills: ['GitHub Actions', 'Docker', 'Kubernetes'],
+  },
+  {
+    icon: '🛠️',
+    title: 'ツール',
+    color: '#6b7280',
+    skills: [
+      'n8n',
+      'NeoVim',
+      'VSCode',
+      'IntelliJ',
+      'Slack',
+      'Zoom',
+      'Figma',
+      'Miro',
+      'Notion',
+      'Jira, Confluence',
+    ],
+  },
+];
 ---
 
 <Layout>
-  <div>Skills</div>
+  <main>
+    <div class="container">
+      <h1>Skills</h1>
+
+      <section class="capabilities">
+        <h2>できること</h2>
+        <ul>
+          {capabilities.map((capability) => <li>{capability}</li>)}
+        </ul>
+      </section>
+
+      <div class="grid">
+        {
+          categories.map((category) => (
+            <article class="card" style={`--accent-color: ${category.color}`}>
+              <div class="card-header">
+                <span class="icon" aria-hidden="true">
+                  {category.icon}
+                </span>
+                <h3>{category.title}</h3>
+              </div>
+              <ul class="skill-list">
+                {category.skills.map((skill) => (
+                  <li>{skill}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </main>
 </Layout>
+
+<style>
+  main {
+    font-family:
+      Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial,
+      sans-serif;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 3rem;
+    color: #111827;
+    letter-spacing: -0.02em;
+  }
+
+  .capabilities {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .capabilities h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 1rem;
+    color: #111827;
+  }
+
+  .capabilities ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .capabilities li {
+    padding: 0.5rem 0;
+    color: #374151;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .capabilities li::before {
+    content: '✓';
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 50%;
+    margin-right: 0.75rem;
+    text-align: center;
+    line-height: 1.5rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow:
+      0 1px 3px 0 rgba(0, 0, 0, 0.1),
+      0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+    border-top: 4px solid var(--accent-color);
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #111827;
+  }
+
+  .skill-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .skill-list li {
+    padding: 0.5rem 0;
+    color: #4b5563;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .skill-list li:last-child {
+    border-bottom: none;
+  }
+
+  /* レスポンシブデザイン */
+  @media screen and (max-width: 768px) {
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .capabilities {
+      padding: 1.5rem;
+    }
+
+    .capabilities ul {
+      grid-template-columns: 1fr;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .card {
+      padding: 1.25rem;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 1025px) {
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
