@@ -83,9 +83,13 @@ const categories: SkillCategory[] = [
 ---
 
 <Layout>
-  <main class="min-h-screen bg-gradient-to-br from-gray-100 to-blue-100 py-8 px-4 font-sans">
+  <main
+    class="min-h-screen bg-gradient-to-br from-gray-100 to-blue-100 px-4 py-8 font-sans"
+  >
     <div class="container mx-auto max-w-7xl">
-      <h1 class="mb-12 text-center text-5xl font-bold tracking-tight text-gray-900 md:text-6xl">
+      <h1
+        class="mb-12 text-center text-5xl font-bold tracking-tight text-gray-900 md:text-6xl"
+      >
         Skills
       </h1>
 
@@ -105,7 +109,9 @@ const categories: SkillCategory[] = [
         </ul>
       </section>
 
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+      <div
+        class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3"
+      >
         {
           categories.map((category) => (
             <article
