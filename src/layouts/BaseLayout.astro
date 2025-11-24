@@ -1,0 +1,118 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../layouts/Layout.astro';
+import type { NavItem } from '../types';
+
+export const NAV_ITEMS: NavItem[] = [
+  { label: 'Home', path: '/' },
+  { label: 'About', path: '/about' },
+  { label: 'Skills', path: '/skills' },
+  { label: 'Projects', path: '/projects' },
+];
+---
+
+<Layout>
+  <div
+    class="flex min-h-screen flex-col bg-gray-50 font-sans text-gray-800 selection:bg-gray-200"
+  >
+    {/* Header */}
+    <header
+      class="sticky top-0 z-50 border-b border-gray-200 bg-gray-50/90 backdrop-blur-sm"
+    >
+      <div
+        class="mx-auto flex h-16 max-w-5xl items-center justify-between px-6"
+      >
+        <a href="/" class="text-lg font-semibold tracking-tight text-gray-900">
+          John Doe
+        </a>
+
+        {/* Desktop Nav */}
+        <nav class="hidden gap-8 md:flex">
+          {
+            NAV_ITEMS.map((item) => (
+              <a
+                href={item.path}
+                class="text-sm font-medium text-gray-500 transition-colors hover:text-gray-900"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <button
+          id="menu-toggle"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+          class="p-2 text-gray-600 hover:text-gray-900 focus:outline-none md:hidden"
+          aria-label="Toggle menu"
+        >
+          <Icon name="mdi:menu" size={24} />
+        </button>
+      </div>
+
+      {/* Mobile Nav */}
+      <div
+        id="mobile-menu"
+        class="mobile-menu absolute top-16 left-0 w-full border-t border-gray-200 bg-gray-50 shadow-lg md:hidden"
+      >
+        <nav class="flex flex-col gap-4 p-6">
+          {
+            NAV_ITEMS.map((item) => (
+              <a
+                href={item.path}
+                class="menu-link text-base font-medium text-gray-500 transition-colors hover:text-gray-900"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+    </header>
+
+    {/* Main Content */}
+    <main class="mx-auto w-full max-w-5xl flex-grow px-6 py-12 md:py-20">
+      <slot />
+    </main>
+
+    {/* Footer */}
+    <footer class="border-t border-gray-200 bg-gray-50 py-12">
+      <div class="mx-auto max-w-5xl px-6 text-center text-sm text-gray-400">
+        <p>&copy; {new Date().getFullYear()} John Doe. All rights reserved.</p>
+        <p class="mt-2 text-xs">Designed with simplicity and reason.</p>
+      </div>
+    </footer>
+  </div>
+</Layout>
+
+<style>
+  /* デフォルトで非表示 */
+  .mobile-menu {
+    display: none;
+  }
+
+  /* aria-expanded="true" の時だけ表示 */
+  header:has(#menu-toggle[aria-expanded='true']) .mobile-menu {
+    display: block;
+  }
+</style>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const menuLinks = document.querySelectorAll('.menu-link');
+
+  // ボタンクリックで開閉
+  menuToggle?.addEventListener('click', () => {
+    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+  });
+
+  // メニューリンククリックで閉じる
+  menuLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      menuToggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

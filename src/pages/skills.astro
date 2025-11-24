@@ -1,5 +1,6 @@
 ---
 import SectionHeader from '../components/SectionHeader.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 import Layout from '../layouts/Layout.astro';
 import type { Skill } from '../types.ts';
 
@@ -73,7 +74,7 @@ const categories: SkillCategory[] = [
 ];
 ---
 
-<Layout>
+<BaseLayout>
   <div>
     <SectionHeader
       title="Technical Skills"
@@ -109,4 +110,4 @@ const categories: SkillCategory[] = [
       </p>
     </div>
   </div>
-</Layout>
+</BaseLayout>
