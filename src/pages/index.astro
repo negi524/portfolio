@@ -1,11 +1,112 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { PROJECTS_DATA, SKILLS_DATA } from '../static/constants';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const featuredProjects = PROJECTS_DATA.slice(0, 2);
+const coreSkills = SKILLS_DATA.slice(0, 2);
 ---
 
-<Layout>
-  <Welcome />
-</Layout>
+<BaseLayout>
+  <div class="space-y-24">
+    <!-- Hero Section -->
+    <section class="max-w-3xl space-y-6">
+      <h1
+        class="text-4xl leading-tight font-semibold tracking-tight text-gray-900 md:text-5xl lg:text-6xl"
+      >
+        Engineering scalable solutions with clarity and precision.
+      </h1>
+      <p class="max-w-2xl text-xl leading-relaxed text-gray-600">
+        Senior Fullstack Engineer specializing in building robust web
+        applications and architectural systems. Focused on performance,
+        maintainability, and rational design.
+      </p>
+      <div class="flex gap-6 pt-4">
+        <a
+          href="/projects"
+          class="inline-flex items-center border-b border-gray-900 pb-0.5 font-medium text-gray-900 transition-colors hover:border-gray-600 hover:text-gray-600"
+        >
+          View Projects
+          <svg
+            class="ml-2 h-4 w-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 12h14m-7-7l7 7-7 7"></path>
+          </svg>
+        </a>
+        <a
+          href="/about"
+          class="inline-flex items-center border-b border-gray-300 pb-0.5 font-medium text-gray-600 transition-colors hover:border-gray-600 hover:text-gray-900"
+        >
+          More About Me
+        </a>
+      </div>
+    </section>
+
+    <!-- Skills Highlight -->
+    <section class="border-t border-gray-200 pt-12">
+      <div class="mb-8 flex items-end justify-between">
+        <h2 class="text-lg font-semibold tracking-wide text-gray-900 uppercase">
+          Core Competencies
+        </h2>
+        <a
+          href="/skills"
+          class="hidden text-sm text-gray-500 transition-colors hover:text-gray-900 md:block"
+        >
+          View all skills
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        {
+          coreSkills.map((category) => (
+            <div class="border border-gray-200 bg-white p-6">
+              <h3 class="text-md mb-4 font-medium text-gray-900">
+                {category.title}
+              </h3>
+              <ul class="space-y-2">
+                {category.skills.slice(0, 3).map((skill) => (
+                  <li class="flex items-center text-sm text-gray-600 before:mr-3 before:h-1.5 before:w-1.5 before:bg-gray-300 before:content-['']">
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+      <div class="mt-6 md:hidden">
+        <a
+          href="/skills"
+          class="text-sm text-gray-500 transition-colors hover:text-gray-900"
+        >
+          View all skills &rarr;
+        </a>
+      </div>
+    </section>
+
+    <!-- Selected Projects -->
+    <section class="border-t border-gray-200 pt-12">
+      <div class="mb-8 flex items-end justify-between">
+        <h2 class="text-lg font-semibold tracking-wide text-gray-900 uppercase">
+          Selected Work
+        </h2>
+        <a
+          href="/projects"
+          class="hidden text-sm text-gray-500 transition-colors hover:text-gray-900 md:block"
+        >
+          View archive
+        </a>
+      </div>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+        {featuredProjects.map((project) => <ProjectCard project={project} />)}
+      </div>
+    </section>
+  </div>
+</BaseLayout>
