@@ -23,37 +23,3 @@ export interface NavItem {
   label: string;
   path: string;
 }
-
-export type Skill =
-  | 'HTML'
-  | 'CSS, SCSS'
-  | 'TypeScript'
-  | 'React, ReactRouter'
-  | 'Vue, Nuxt.js'
-  | 'Astro'
-  | 'Java'
-  | 'SpringBoot'
-  | 'NestJS'
-  | 'Python'
-  | 'FastAPI'
-  | 'Ruby on Rails'
-  | 'Solr'
-  | 'ドメイン駆動設計'
-  | 'クリーンアーキテクチャ'
-  | 'API設計'
-  | 'Claude Code'
-  | 'MCP'
-  | 'Dify'
-  | 'GitHub Actions'
-  | 'Docker'
-  | 'Kubernetes'
-  | 'n8n'
-  | 'NeoVim'
-  | 'VSCode'
-  | 'IntelliJ'
-  | 'Slack'
-  | 'Zoom'
-  | 'Figma'
-  | 'Miro'
-  | 'Notion'
-  | 'Jira, Confluence';
