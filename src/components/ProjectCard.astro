@@ -1,5 +1,6 @@
 ---
 import type { Project } from '../types.ts';
+import { Icon } from 'astro-icon/components';
 
 export interface Props {
   project: Project;
@@ -24,7 +25,8 @@ const { project } = Astro.props;
         ))
       }
     </div>
-    <ArrowUpRight
+    <Icon
+      name="mdi:arrow-top-right"
       class="h-5 w-5 text-gray-400 transition-colors group-hover:text-gray-900"
     />
   </div>
