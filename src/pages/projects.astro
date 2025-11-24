@@ -1,8 +1,8 @@
 ---
-import Layout from '../layouts/Layout.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { PROJECTS_DATA } from '../static/constants';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 // Extract unique tags for filter menu
 const allTagsSet = new Set<string>();
@@ -10,7 +10,7 @@ PROJECTS_DATA.forEach((p) => p.tags.forEach((t) => allTagsSet.add(t)));
 const allTags = ['All', ...Array.from(allTagsSet).sort()];
 ---
 
-<Layout>
+<BaseLayout>
   <div class="mx-auto max-w-6xl px-4 py-12">
     <SectionHeader
       title="Projects"
@@ -24,7 +24,7 @@ const allTags = ['All', ...Array.from(allTagsSet).sort()];
           allTags.map((tag) => (
             <button
               data-filter={tag}
-              class="filter-btn border px-4 py-2 text-sm font-medium transition-all duration-200 bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+              class="filter-btn border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-600 transition-all duration-200 hover:border-gray-400"
             >
               {tag}
             </button>
@@ -34,7 +34,10 @@ const allTags = ['All', ...Array.from(allTagsSet).sort()];
     </div>
 
     <!-- Projects Grid -->
-    <div id="projects-grid" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
+    <div
+      id="projects-grid"
+      class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2"
+    >
       {
         PROJECTS_DATA.map((project) => (
           <div class="project-item" data-tags={JSON.stringify(project.tags)}>
@@ -49,7 +52,7 @@ const allTags = ['All', ...Array.from(allTagsSet).sort()];
       No projects found matching the selected filter.
     </div>
   </div>
-</Layout>
+</BaseLayout>
 
 <script>
   // Client-side filtering logic
@@ -78,7 +81,8 @@ const allTags = ['All', ...Array.from(allTagsSet).sort()];
 
     projectItems.forEach((item) => {
       const tags = JSON.parse(item.getAttribute('data-tags') || '[]');
-      const shouldShow = currentFilter === 'All' || tags.includes(currentFilter);
+      const shouldShow =
+        currentFilter === 'All' || tags.includes(currentFilter);
 
       if (shouldShow) {
         item.classList.remove('hidden');

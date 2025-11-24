@@ -1,12 +1,7 @@
 ---
 import SectionHeader from '../components/SectionHeader.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import type { Skill } from '../static/constants';
-
-interface SkillCategory {
-  title: string;
-  skills: Skill[];
-}
+import { SKILLS_DATA } from '../static/constants';
 
 const capabilities: string[] = [
   'WebAPIの設計、開発',
@@ -16,60 +11,6 @@ const capabilities: string[] = [
   'エンジニアチームのマネジメント',
   '検索システムの設計、開発',
   'LLMを活用したワークフローの構築',
-];
-
-const categories: SkillCategory[] = [
-  {
-    title: 'フロントエンド',
-    skills: [
-      'HTML',
-      'CSS, SCSS',
-      'TypeScript',
-      'React, ReactRouter',
-      'Vue, Nuxt.js',
-      'Astro',
-    ],
-  },
-  {
-    title: 'バックエンド',
-    skills: [
-      'Java',
-      'SpringBoot',
-      'TypeScript',
-      'NestJS',
-      'Python',
-      'FastAPI',
-      'Ruby on Rails',
-      'Solr',
-    ],
-  },
-  {
-    title: '設計・アーキテクチャ',
-    skills: ['ドメイン駆動設計', 'クリーンアーキテクチャ', 'API設計'],
-  },
-  {
-    title: 'LLM・AI',
-    skills: ['Claude Code', 'MCP', 'Dify'],
-  },
-  {
-    title: 'インフラ・DevOps',
-    skills: ['GitHub Actions', 'Docker', 'Kubernetes'],
-  },
-  {
-    title: 'ツール',
-    skills: [
-      'n8n',
-      'NeoVim',
-      'VSCode',
-      'IntelliJ',
-      'Slack',
-      'Zoom',
-      'Figma',
-      'Miro',
-      'Notion',
-      'Jira, Confluence',
-    ],
-  },
 ];
 ---
 
@@ -82,7 +23,7 @@ const categories: SkillCategory[] = [
 
     <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
       {
-        categories.map((category) => (
+        SKILLS_DATA.map((category) => (
           <div class="border border-gray-200 bg-white p-8 shadow-sm">
             <h3 class="mb-6 border-b border-gray-100 pb-3 text-lg font-semibold text-gray-900">
               {category.title}

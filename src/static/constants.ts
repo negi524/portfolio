@@ -34,6 +34,65 @@ export type Skill =
   | 'Notion'
   | 'Jira, Confluence';
 
+export interface SkillCategory {
+  title: string;
+  skills: Skill[];
+}
+
+export const SKILLS_DATA: SkillCategory[] = [
+  {
+    title: 'フロントエンド',
+    skills: [
+      'HTML',
+      'CSS, SCSS',
+      'TypeScript',
+      'React, ReactRouter',
+      'Vue, Nuxt.js',
+      'Astro',
+    ],
+  },
+  {
+    title: 'バックエンド',
+    skills: [
+      'Java',
+      'SpringBoot',
+      'TypeScript',
+      'NestJS',
+      'Python',
+      'FastAPI',
+      'Ruby on Rails',
+      'Solr',
+    ],
+  },
+  {
+    title: '設計・アーキテクチャ',
+    skills: ['ドメイン駆動設計', 'クリーンアーキテクチャ', 'API設計'],
+  },
+  {
+    title: 'LLM・AI',
+    skills: ['Claude Code', 'MCP', 'Dify'],
+  },
+  {
+    title: 'インフラ・DevOps',
+    skills: ['GitHub Actions', 'Docker', 'Kubernetes'],
+  },
+  {
+    title: 'ツール',
+    skills: [
+      'n8n',
+      'NeoVim',
+      'VSCode',
+      'IntelliJ',
+      'Slack',
+      'Zoom',
+      'Figma',
+      'Miro',
+      'Notion',
+      'Jira, Confluence',
+    ],
+  },
+];
+
 export const PROJECTS_DATA: Project[] = [
   {
     id: '1',
