@@ -1,7 +1,112 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { PROJECTS_DATA } from '../static/constants';
+
+// Extract unique tags for filter menu
+const allTagsSet = new Set<string>();
+PROJECTS_DATA.forEach((p) => p.tags.forEach((t) => allTagsSet.add(t)));
+const allTags = ['All', ...Array.from(allTagsSet).sort()];
 ---
 
 <Layout>
-  <div>Projects</div>
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <SectionHeader
+      title="Projects"
+      subtitle="A collection of commercial projects, open-source contributions, and experiments."
+    />
+
+    <!-- Filter Bar -->
+    <div class="mb-10 overflow-x-auto pb-2">
+      <div class="flex min-w-max gap-2">
+        {
+          allTags.map((tag) => (
+            <button
+              data-filter={tag}
+              class="filter-btn border px-4 py-2 text-sm font-medium transition-all duration-200 bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+            >
+              {tag}
+            </button>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div id="projects-grid" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-2">
+      {
+        PROJECTS_DATA.map((project) => (
+          <div class="project-item" data-tags={JSON.stringify(project.tags)}>
+            <ProjectCard project={project} />
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden py-20 text-center text-gray-500">
+      No projects found matching the selected filter.
+    </div>
+  </div>
 </Layout>
+
+<script>
+  // Client-side filtering logic
+  let currentFilter = 'All';
+
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projectItems = document.querySelectorAll('.project-item');
+  const projectsGrid = document.getElementById('projects-grid');
+  const emptyState = document.getElementById('empty-state');
+
+  function updateActiveButton() {
+    filterButtons.forEach((btn) => {
+      const btnFilter = btn.getAttribute('data-filter');
+      if (btnFilter === currentFilter) {
+        btn.classList.remove('bg-white', 'text-gray-600', 'border-gray-200');
+        btn.classList.add('bg-gray-800', 'text-white', 'border-gray-800');
+      } else {
+        btn.classList.remove('bg-gray-800', 'text-white', 'border-gray-800');
+        btn.classList.add('bg-white', 'text-gray-600', 'border-gray-200');
+      }
+    });
+  }
+
+  function filterProjects() {
+    let visibleCount = 0;
+
+    projectItems.forEach((item) => {
+      const tags = JSON.parse(item.getAttribute('data-tags') || '[]');
+      const shouldShow = currentFilter === 'All' || tags.includes(currentFilter);
+
+      if (shouldShow) {
+        item.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+
+    // Show/hide empty state
+    if (visibleCount === 0) {
+      projectsGrid?.classList.add('hidden');
+      emptyState?.classList.remove('hidden');
+    } else {
+      projectsGrid?.classList.remove('hidden');
+      emptyState?.classList.add('hidden');
+    }
+  }
+
+  // Initialize: set 'All' as active
+  updateActiveButton();
+
+  // Add click handlers to filter buttons
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      currentFilter = btn.getAttribute('data-filter') || 'All';
+      updateActiveButton();
+      filterProjects();
+    });
+  });
+</script>
