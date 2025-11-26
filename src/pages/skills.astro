@@ -28,11 +28,11 @@ const capabilities: string[] = [
             <h3 class="mb-6 border-b border-gray-100 pb-3 text-lg font-semibold text-gray-900">
               {category.title}
             </h3>
-            <ul class="grid grid-cols-1 gap-3">
+            <ul class="space-y-2">
               {category.skills.map((skill) => (
-                <li class="flex items-start text-gray-700">
-                  <span class="mt-2 mr-3 inline-block h-1.5 w-1.5 rounded-none bg-gray-400" />
-                  <span class="text-base">{skill}</span>
+                <li class="flex items-center text-base text-gray-700">
+                  <span class="mr-3 inline-block h-1.5 w-1.5 bg-gray-400" />
+                  {skill}
                 </li>
               ))}
             </ul>
