@@ -41,7 +41,7 @@ export interface SkillCategory {
 
 export const SKILLS_DATA: SkillCategory[] = [
   {
-    title: 'フロントエンド',
+    title: 'Frontend',
     skills: [
       'HTML',
       'CSS, SCSS',
@@ -52,7 +52,7 @@ export const SKILLS_DATA: SkillCategory[] = [
     ],
   },
   {
-    title: 'バックエンド',
+    title: 'Backend',
     skills: [
       'Java',
       'SpringBoot',
@@ -65,19 +65,19 @@ export const SKILLS_DATA: SkillCategory[] = [
     ],
   },
   {
-    title: '設計・アーキテクチャ',
+    title: 'Architecture',
     skills: ['ドメイン駆動設計', 'クリーンアーキテクチャ', 'API設計'],
   },
   {
-    title: 'LLM・AI',
+    title: 'LLM / AI',
     skills: ['Claude Code', 'MCP', 'Dify'],
   },
   {
-    title: 'インフラ・DevOps',
+    title: 'Infrastructure / DevOps',
     skills: ['GitHub Actions', 'Docker', 'Kubernetes'],
   },
   {
-    title: 'ツール',
+    title: 'Tools',
     skills: [
       'n8n',
       'NeoVim',
@@ -97,69 +97,68 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: '1',
     slug: 'financial-dashboard',
-    title: 'Enterprise Financial Dashboard',
+    title: 'エンタープライズ金融ダッシュボード',
     summary:
-      'A real-time analytics dashboard for a fintech unicorn, handling high-frequency data updates.',
+      'フィンテックユニコーン向けのリアルタイム分析ダッシュボード。高頻度のデータ更新を処理。',
     description:
-      'Developed a comprehensive financial dashboard used by internal analysts to monitor global transaction flows in real-time. The system needed to render thousands of data points without UI lag.',
+      '社内アナリストが世界の取引フローをリアルタイムで監視するために使用する包括的な金融ダッシュボードを開発。UIの遅延なしに数千のデータポイントを描画する必要がありました。',
     thumbnailUrl: 'https://picsum.photos/800/600?random=1',
     tags: ['Frontend', 'Performance', 'Fintech'],
     techStack: ['React', 'TypeScript', 'D3.js', 'WebSocket', 'Redux Toolkit'],
     challenges:
-      'Rendering performance was the main bottleneck due to the volume of incoming WebSocket messages (50+ per second).',
+      'WebSocketメッセージの大量流入（毎秒50件以上）による描画パフォーマンスが主なボトルネックでした。',
     solutions:
-      'Implemented data throttling, virtualized lists for tabular data, and Web Workers for data processing off the main thread.',
+      'データの間引き（スロットリング）、表形式データの仮想化リスト、メインスレッド外でのデータ処理のためのWeb Workerを実装しました。',
     year: '2023',
   },
   {
     id: '2',
     slug: 'ecommerce-platform',
-    title: 'Headless E-commerce Migration',
+    title: 'ヘッドレスEコマース移行',
     summary:
-      'Migrating a legacy monolithic e-commerce site to a modern headless architecture.',
+      'レガシーなモノリシックEコマースサイトをモダンなヘッドレスアーキテクチャへ移行。',
     description:
-      'Led the migration strategy for a high-traffic retail client. Decomposed a monolithic .NET application into microservices and a Next.js frontend.',
+      'トラフィックの多い小売クライアントの移行戦略を主導。モノリシックな.NETアプリケーションをマイクロサービスとNext.jsフロントエンドに分解しました。',
     thumbnailUrl: 'https://picsum.photos/800/600?random=2',
     tags: ['Fullstack', 'Architecture', 'E-commerce'],
     techStack: ['Next.js', 'Node.js', 'GraphQL', 'Stripe API', 'Contentful'],
     challenges:
-      'Maintaining SEO ranking during the migration and ensuring zero downtime for the payment gateway.',
+      '移行中のSEOランキングの維持と、決済ゲートウェイのゼロダウンタイムの確保。',
     solutions:
-      'Used incremental static regeneration (ISR) for product pages and extensive A/B testing on the checkout flow.',
+      '商品ページにインクリメンタル静的再生成（ISR）を使用し、チェックアウトフローで広範なA/Bテストを実施しました。',
     year: '2022',
   },
   {
     id: '3',
     slug: 'ai-doc-assistant',
-    title: 'Legal Document AI Assistant',
+    title: '法的文書AIアシスタント',
     summary:
-      'An internal tool leveraging LLMs to summarize and extract entities from legal contracts.',
+      'LLMを活用して法的契約書の要約とエンティティ抽出を行う社内ツール。',
     description:
-      'Built a secure internal tool that allows legal teams to upload PDFs and ask questions about clauses using RAG (Retrieval-Augmented Generation).',
+      '法務チームがPDFをアップロードし、RAG（検索拡張生成）を使用して条項について質問できる安全な社内ツールを構築しました。',
     thumbnailUrl: 'https://picsum.photos/800/600?random=3',
     tags: ['AI/LLM', 'Backend', 'Internal Tool'],
     techStack: ['Python', 'LangChain', 'OpenAI API', 'React', 'Pinecone'],
     challenges:
-      'Ensuring data privacy and preventing hallucination on critical legal terms.',
+      'データのプライバシー確保と、重要な法的用語に関するハルシネーション（もっともらしい嘘）の防止。',
     solutions:
-      'Implemented strict prompt engineering guidelines and a "citation" feature that links generated answers back to specific source paragraphs.',
+      '厳格なプロンプトエンジニアリングガイドラインと、生成された回答を特定のソース段落にリンクする「引用」機能を実装しました。',
     year: '2024',
   },
   {
     id: '4',
     slug: 'health-tracker-iot',
-    title: 'IoT Health Monitor',
+    title: 'IoTヘルスモニター',
     summary:
-      'Mobile-responsive web app syncing with wearable IoT devices via Bluetooth.',
+      'Bluetooth経由でウェアラブルIoTデバイスと同期するモバイル対応Webアプリ。',
     description:
-      'A consumer-facing application displaying health metrics synced from a proprietary wearable device.',
+      '独自のウェアラブルデバイスから同期された健康指標を表示する消費者向けアプリケーション。',
     thumbnailUrl: 'https://picsum.photos/800/600?random=4',
     tags: ['Mobile', 'IoT', 'Health'],
     techStack: ['React', 'Web Bluetooth API', 'PWA', 'IndexedDB'],
-    challenges:
-      'Reliability of Bluetooth connections across different browser implementations.',
+    challenges: '異なるブラウザ実装間でのBluetooth接続の信頼性。',
     solutions:
-      'Created a robust connection state machine to handle reconnects and fallbacks gracefully.',
+      '再接続とフォールバックを適切に処理するための堅牢な接続ステートマシンを作成しました。',
     year: '2021',
   },
 ];
