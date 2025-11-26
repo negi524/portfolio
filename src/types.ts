@@ -14,7 +14,8 @@ export interface Project {
   techStack: string[];
   challenges?: string;
   solutions?: string;
-  year: string;
+  startDate: string;
+  endDate?: string;
 }
 
 export interface NavItem {

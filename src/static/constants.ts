@@ -109,7 +109,8 @@ export const PROJECTS_DATA: Project[] = [
       'WebSocketメッセージの大量流入（毎秒50件以上）による描画パフォーマンスが主なボトルネックでした。',
     solutions:
       'データの間引き（スロットリング）、表形式データの仮想化リスト、メインスレッド外でのデータ処理のためのWeb Workerを実装しました。',
-    year: '2023',
+    startDate: '2023-01',
+    endDate: '2023-12',
   },
   {
     id: '2',
@@ -126,7 +127,8 @@ export const PROJECTS_DATA: Project[] = [
       '移行中のSEOランキングの維持と、決済ゲートウェイのゼロダウンタイムの確保。',
     solutions:
       '商品ページにインクリメンタル静的再生成（ISR）を使用し、チェックアウトフローで広範なA/Bテストを実施しました。',
-    year: '2022',
+    startDate: '2022-04',
+    endDate: '2022-10',
   },
   {
     id: '3',
@@ -143,7 +145,7 @@ export const PROJECTS_DATA: Project[] = [
       'データのプライバシー確保と、重要な法的用語に関するハルシネーション（もっともらしい嘘）の防止。',
     solutions:
       '厳格なプロンプトエンジニアリングガイドラインと、生成された回答を特定のソース段落にリンクする「引用」機能を実装しました。',
-    year: '2024',
+    startDate: '2024-01',
   },
   {
     id: '4',
@@ -159,6 +161,7 @@ export const PROJECTS_DATA: Project[] = [
     challenges: '異なるブラウザ実装間でのBluetooth接続の信頼性。',
     solutions:
       '再接続とフォールバックを適切に処理するための堅牢な接続ステートマシンを作成しました。',
-    year: '2021',
+    startDate: '2021-06',
+    endDate: '2021-12',
   },
 ];
