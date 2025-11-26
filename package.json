@@ -17,6 +17,7 @@
     "@tailwindcss/vite": "^4.1.17",
     "astro": "^5.15.7",
     "astro-icon": "^1.1.5",
+    "date-fns": "^4.1.0",
     "tailwindcss": "^4.1.17",
     "typescript": "^5.9.3"
   },
