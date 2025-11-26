@@ -114,22 +114,6 @@ const project = PROJECTS_DATA.find((p) => p.slug === slug) as Project;
               <span class="text-gray-500">Year</span>
               <span class="font-medium text-gray-900">{project.year}</span>
             </li>
-            <li class="flex justify-between border-b border-gray-100 pb-2">
-              <span class="text-gray-500">Role</span>
-              <span class="max-w-[60%] text-right font-medium text-gray-900"
-                >{project.role}</span
-              >
-            </li>
-            {
-              project.teamSize && (
-                <li class="flex justify-between border-b border-gray-100 pb-2">
-                  <span class="text-gray-500">Team Size</span>
-                  <span class="font-medium text-gray-900">
-                    {project.teamSize} people
-                  </span>
-                </li>
-              )
-            }
           </ul>
         </div>
 

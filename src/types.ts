@@ -11,11 +11,9 @@ export interface Project {
   description: string;
   thumbnailUrl: string; // Placeholder URL
   tags: string[];
-  role: string;
   techStack: string[];
   challenges?: string;
   solutions?: string;
-  teamSize?: number;
   year: string;
 }
 
