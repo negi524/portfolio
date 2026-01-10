@@ -1,10 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
-import ProjectCard from '../components/ProjectCard.astro';
-import { PROJECTS_DATA, SKILLS_DATA } from '../static/constants';
+import { EXPERIENCE_DATA, SKILLS_DATA } from '../static/constants';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const featuredProjects = PROJECTS_DATA.slice(0, 2);
 const coreSkills = SKILLS_DATA.slice(0, 2);
 ---
 
@@ -112,21 +110,43 @@ const coreSkills = SKILLS_DATA.slice(0, 2);
       </div>
     </section>
 
-    <!-- Selected Projects -->
+    <!-- Experience Section -->
     <section class="border-t border-gray-200 pt-12">
       <div class="mb-8 flex items-end justify-between">
         <h2 class="text-xl font-semibold tracking-wide text-gray-900 uppercase">
-          Selected Work
+          Experience
         </h2>
         <a
-          href="/projects"
+          href="/skills"
           class="hidden text-sm text-gray-500 transition-colors hover:text-gray-900 md:block"
         >
-          View archive
+          View skills
         </a>
       </div>
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-        {featuredProjects.map((project) => <ProjectCard project={project} />)}
+
+      <div class="space-y-6">
+        {
+          EXPERIENCE_DATA.map((exp) => (
+            <div>
+              <div class="mb-2 text-sm font-medium text-gray-500">
+                {exp.period}
+              </div>
+              <div class="border border-gray-200 bg-white p-6">
+                <h3 class="mb-3 text-lg font-semibold text-gray-900">
+                  {exp.title}
+                </h3>
+                <ul class="space-y-2">
+                  {exp.description.map((item) => (
+                    <li class="flex items-start text-sm text-gray-600">
+                      <span class="mt-1.5 mr-2 h-1 w-1 flex-shrink-0 rounded-full bg-gray-400" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </section>
   </div>

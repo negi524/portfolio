@@ -18,6 +18,13 @@ export interface Project {
   endDate?: string;
 }
 
+export interface Experience {
+  id: string;
+  period: string;
+  title: string;
+  description: string[];
+}
+
 export interface NavItem {
   label: string;
   path: string;
