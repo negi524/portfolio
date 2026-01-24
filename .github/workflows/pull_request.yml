@@ -27,13 +27,6 @@ jobs:
       - run: pnpm run lint
       # ビルドチェック
       - name: Build check
-        # 静的ファイル生成に必要な環境変数を読み込み
-        env:
-          CUSTOM_DOMAIN: ${{ secrets.CUSTOM_DOMAIN }}
-          NOTION_API_SECRET: ${{ secrets.NOTION_API_SECRET }}
-          DATASOURCE_ID: ${{ secrets.DATASOURCE_ID }}
-          PUBLIC_GA_TRACKING_ID: ${{ secrets.PUBLIC_GA_TRACKING_ID }}
-          PUBLIC_CLARITY_PROJECT_ID: ${{ secrets.PUBLIC_CLARITY_PROJECT_ID }}
         run: pnpm run build
 
   # タグバージョンを検証する
