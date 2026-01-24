@@ -7,9 +7,13 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
+  // GitHub Pages公開のため
+  site: 'https://negi524.github.io',
+  base: '/portfolio',
+  outDir: './docs',
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
 
-  integrations: [icon()]
+  integrations: [icon()],
 });

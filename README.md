@@ -18,7 +18,7 @@ Inside of your Astro project, you'll see the following folders and files:
 │   ├── assets
 │   │   └── astro.svg
 │   ├── components
-│   │   └── Welcome.astro
+│   │   └── SectionHeader.astro
 │   ├── layouts
 │   │   └── Layout.astro
 │   └── pages
@@ -37,9 +37,10 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm install`             | Installs dependencies                            |
 | `pnpm dev`             | Starts local dev server at `localhost:4321`      |
 | `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
+| `pnpm preview`         | Preview your build locally (includes `base` path setting for GitHub Pages) |
 | `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `pnpm astro -- --help` | Get help using the Astro CLI                     |
+| `pnpm version minor --no-git-tag-version` | Bump minor version without creating a git tag |
 
 ## 👀 Want to learn more?
 
