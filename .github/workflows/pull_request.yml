@@ -1,0 +1,54 @@
+name: Pull Request
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ビルドとテストなどを検証する
+  build_check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [25.x]
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
+      - run: pnpm install --frozen-lockfile
+      # フォーマットチェック
+      - run: pnpm run lint
+      # ビルドチェック
+      - name: Build check
+        run: pnpm run build
+
+  # タグバージョンを検証する
+  tag_check:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [25.x]
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Tag check
+        run: |
+          # タグ情報のみfetch
+          git fetch --tags
+          git tag -n
+          # package.jsonからバージョン取得
+          export TAG_VERSION=v$(node -e "console.log(require('./package.json').version)")
+          echo "this branch version is $TAG_VERSION"
+          # 取得したバージョンでタグ生成を試みてエラーだったらバージョン変更なし
+          git tag $TAG_VERSION
