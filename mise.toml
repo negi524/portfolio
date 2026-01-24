@@ -1,4 +1,3 @@
 [tools]
 node = "25.3"
-"npm:http-server" = "latest"
 pnpm = "10.28.0"
