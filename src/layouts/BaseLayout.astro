@@ -1,12 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Layout from '../layouts/Layout.astro';
-import type { NavItem } from '../types';
+import { NAV_ITEMS } from '../static/constants';
 
-export const NAV_ITEMS: NavItem[] = [
-  { label: 'Home', path: '/' },
-  { label: 'Skills', path: '/skills' },
-];
+const currentYear = new Date().getFullYear();
 ---
 
 <Layout>
@@ -80,8 +77,8 @@ export const NAV_ITEMS: NavItem[] = [
 
     {/* Footer */}
     <footer class="border-t border-gray-200 bg-gray-50 py-12">
-      <div class="mx-auto max-w-5xl px-6 text-center text-sm text-gray-400">
-        <p>&copy; 2025 negi524 All rights reserved.</p>
+      <div class="mx-auto max-w-5xl px-6 text-center text-sm text-gray-500">
+        <p>&copy; {currentYear} negi524 All rights reserved.</p>
       </div>
     </footer>
   </div>
@@ -101,18 +98,43 @@ export const NAV_ITEMS: NavItem[] = [
 
 <script>
   const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
   const menuLinks = document.querySelectorAll('.menu-link');
+
+  const isMenuOpen = () => menuToggle?.getAttribute('aria-expanded') === 'true';
+
+  const closeMenu = () => {
+    menuToggle?.setAttribute('aria-expanded', 'false');
+  };
 
   // ボタンクリックで開閉
   menuToggle?.addEventListener('click', () => {
-    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', String(!isExpanded));
+    menuToggle.setAttribute('aria-expanded', String(!isMenuOpen()));
   });
 
   // メニューリンククリックで閉じる
   menuLinks.forEach((link) => {
-    link.addEventListener('click', () => {
-      menuToggle?.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Escapeキーで閉じる
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isMenuOpen()) {
+      closeMenu();
+      menuToggle?.focus();
+    }
+  });
+
+  // メニュー領域外のクリックで閉じる
+  document.addEventListener('click', (event) => {
+    if (!isMenuOpen()) return;
+    const target = event.target;
+    if (
+      target instanceof Node &&
+      !mobileMenu?.contains(target) &&
+      !menuToggle?.contains(target)
+    ) {
+      closeMenu();
+    }
   });
 </script>

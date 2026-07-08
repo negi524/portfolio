@@ -1,8 +1,3 @@
-export interface SkillCategory {
-  title: string;
-  skills: string[];
-}
-
 export interface Project {
   id: string;
   slug: string;

@@ -1,4 +1,9 @@
-import type { Experience } from '../types';
+import type { Experience, NavItem } from '../types';
+
+export const NAV_ITEMS: NavItem[] = [
+  { label: 'Home', path: '/' },
+  { label: 'Skills', path: '/skills' },
+];
 
 export type Skill =
   | 'HTML'
